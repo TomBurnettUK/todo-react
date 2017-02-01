@@ -42,7 +42,7 @@ class TodoApp extends React.Component {
   handleSearch(showCompleted, searchText) {
     this.setState({
       showCompleted,
-      searchText
+      searchText: searchText.toLowerCase()
     });
   }
 

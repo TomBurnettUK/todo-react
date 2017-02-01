@@ -11,7 +11,7 @@ class TodoSearch extends React.Component {
     const showCompleted = this.refs.showCompleted.checked;
     const searchText = this.refs.searchText.value;
 
-    this.props.onSearch(showCompleted, searchText.toLowerCase());
+    this.props.onSearch(showCompleted, searchText);
   }
 
   render() {
