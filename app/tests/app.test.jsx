@@ -1,7 +1,7 @@
 const expect = require('expect');
 
 describe('App', () => {
-    it('should run tests', () => {
+  it('should run tests', () => {
 
-    });
+  });
 });
