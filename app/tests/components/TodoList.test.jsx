@@ -14,8 +14,8 @@ describe('TodoList', () => {
 
   it('should render Todo components', () => {
     const todos = [
-      { id: 1, text: 'Do something' },
-      { id: 2, text: 'Do something else'}
+      { id: 'abc', text: 'Do something' },
+      { id: 'xyz', text: 'Do something else'}
     ];
 
     const todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);

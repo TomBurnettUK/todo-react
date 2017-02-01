@@ -13,7 +13,7 @@ class Todo extends React.Component {
 }
 
 Todo.propTypes = {
-  id: React.PropTypes.number,
+  id: React.PropTypes.string,
   text: React.PropTypes.string
 }
 
