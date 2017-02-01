@@ -15,32 +15,48 @@ class TodoApp extends React.Component {
       todos: [
         {
           id: uuid(),
-          text: 'Walk the dog'
+          text: 'Walk the dog',
+          completed: false
         },
         {
           id: uuid(),
-          text: 'Clean the yard'
+          text: 'Clean the yard',
+          completed: true
         },
         {
           id: uuid(),
-          text: 'Do the dishes'
+          text: 'Do the dishes',
+          completed: false
         },
         {
           id: uuid(),
-          text: 'Take out trash'
+          text: 'Take out trash',
+          completed: false
         }
       ]
     };
 
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  handleToggle(id) {
+    const updatedTodos = this.state.todos.map((todo) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    this.setState({ todos: updatedTodos });
   }
 
   handleAddTodo(text) {
     this.setState({
       todos: [
         ...this.state.todos,
-        { id: uuid(), text }
+        { id: uuid(), text, completed: false }
       ]
     });
   }
@@ -58,7 +74,7 @@ class TodoApp extends React.Component {
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch}/>
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onToggle={this.handleToggle}/>
         <AddTodo onAddTodo={this.handleAddTodo}/>
       </div>
     );

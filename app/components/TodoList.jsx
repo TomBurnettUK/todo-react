@@ -3,12 +3,12 @@ import Todo from 'Todo';
 
 class TodoList extends React.Component {
   render() {
-    const {todos} = this.props;
+    const {todos, onToggle} = this.props;
 
     const renderTodos = () => {
       return todos.map((todo) => {
         return (
-          <Todo key={todo.id} {...todo}/>
+          <Todo key={todo.id} onToggle={onToggle} {...todo}/>
         );
       })
     };
@@ -22,7 +22,8 @@ class TodoList extends React.Component {
 }
 
 TodoList.propTypes = {
-  todos: React.PropTypes.array
+  todos: React.PropTypes.array,
+  onToggle: React.PropTypes.func
 }
 
 export default TodoList;
