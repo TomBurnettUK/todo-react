@@ -16,13 +16,13 @@ class TodoSearch extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container__header">
         <div>
           <input type="search" ref="searchText" placeholder="Search todos" onChange={this.todoSearch}/>
         </div>
           <label>
             <input type="checkbox" ref="showCompleted" onChange={this.todoSearch}/>
-            Show completed todos
+            <p>Show completed todos</p>
           </label>
       </div>
     );
