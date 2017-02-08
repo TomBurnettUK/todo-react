@@ -26,7 +26,8 @@ module.exports = {
             'node_modules',
             'app/components',
             'app/api',
-            'app/actions'
+            'app/actions',
+            'app/reducers'
         ],
         alias: {
             applicationStyles: 'app/styles/app.scss'
@@ -38,7 +39,8 @@ module.exports = {
             {
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react', 'latest']
+                    presets: ['react', 'latest'],
+                    plugins: ['transform-object-rest-spread']
                 },
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/
