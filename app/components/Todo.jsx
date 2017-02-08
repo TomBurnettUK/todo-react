@@ -21,7 +21,7 @@ class Todo extends React.Component {
     return (
       <div className={todoClassName} onClick={() => { onToggle(id) }}>
         <div>
-          <input type="checkbox" defaultChecked={completed}/>
+          <input type="checkbox" checked={completed} readOnly="true"/>
         </div>
         <div>
           <p>{text}</p>

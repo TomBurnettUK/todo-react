@@ -9,6 +9,10 @@
     margin: 0;
   }
 
+  input {
+    cursor: default;
+  }
+
   > :first-child {
     margin-right: 1rem;
   }
