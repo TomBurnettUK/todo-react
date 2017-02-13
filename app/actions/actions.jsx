@@ -13,6 +13,13 @@ export default {
     };
   },
 
+  addTodos(todos) {
+    return {
+      type: 'ADD_TODOS',
+      todos
+    };
+  },
+
   toggleShowCompleted() {
     return {
       type: 'TOGGLE_SHOW_COMPLETED'
