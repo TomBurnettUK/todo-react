@@ -28,7 +28,7 @@ export default {
         return [
           ...state,
           {
-            id: uuid,
+            id: uuid(),
             text: action.text,
             completed: false,
             createdAt: moment().unix(),

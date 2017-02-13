@@ -1,27 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import actions from 'actions';
 
-class TodoSearch extends React.Component {
+export class TodoSearch extends React.Component {
   constructor(props) {
     super(props);
 
     this.todoSearch = this.todoSearch.bind(this);
+    this.toggleCompleted = this.toggleCompleted.bind(this);
   }
 
   todoSearch() {
-    const showCompleted = this.refs.showCompleted.checked;
+    const { dispatch } = this.props;
     const searchText = this.refs.searchText.value;
+    dispatch(actions.setSearchText(searchText));
+  }
 
-    this.props.onSearch(showCompleted, searchText);
+  toggleCompleted() {
+    const { dispatch } = this.props;
+    dispatch(actions.toggleShowCompleted());
   }
 
   render() {
+    const { showCompleted, searchText } = this.props;
     return (
       <div className="container__header">
         <div>
-          <input type="search" ref="searchText" placeholder="Search todos" onChange={this.todoSearch}/>
+          <input type="search" ref="searchText" placeholder="Search todos" value={searchText} onChange={this.todoSearch}/>
         </div>
           <label>
-            <input type="checkbox" ref="showCompleted" onChange={this.todoSearch}/>
+            <input type="checkbox" ref="showCompleted" checked={showCompleted} onChange={this.toggleCompleted}/>
             <p>Show completed todos</p>
           </label>
       </div>
@@ -30,7 +38,16 @@ class TodoSearch extends React.Component {
 }
 
 TodoSearch.propTypes = {
-  onSearch: React.PropTypes.func
+  dispatch: React.PropTypes.func,
+  showCompleted: React.PropTypes.bool,
+  searchText: React.PropTypes.string
 };
 
-export default TodoSearch;
+export default connect(
+  (state) => {
+    return {
+      showCompleted: state.showCompleted,
+      searchText: state.searchText
+    };
+  }
+)(TodoSearch);

@@ -1,9 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Todo from 'Todo';
+import TodoAPI from 'TodoAPI';
 
-class TodoList extends React.Component {
+export class TodoList extends React.Component {
   render() {
-    const {todos, onToggle} = this.props;
+    const {todos, showCompleted, searchText} = this.props;
 
     const renderTodos = () => {
       if (todos.length === 0) {
@@ -11,9 +13,9 @@ class TodoList extends React.Component {
           <p className="container__message">Nothing to do!</p>
         );
       } else {
-        return todos.map((todo) => {
+        return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
           return (
-            <Todo key={todo.id} onToggle={onToggle} {...todo}/>
+            <Todo key={todo.id} {...todo}/>
           );
         });
       }
@@ -29,7 +31,12 @@ class TodoList extends React.Component {
 
 TodoList.propTypes = {
   todos: React.PropTypes.array,
-  onToggle: React.PropTypes.func
-}
+  showCompleted: React.PropTypes.bool,
+  searchText: React.PropTypes.string
+};
 
-export default TodoList;
+export default connect(
+  (state) => {
+    return state
+  }
+)(TodoList);

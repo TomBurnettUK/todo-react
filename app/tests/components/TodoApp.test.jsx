@@ -1,9 +1,12 @@
 import expect from 'expect';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import TestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 
+import { configure } from 'configureStore';
+import TodoList from 'TodoList';
 import TodoApp from 'TodoApp';
 
 describe('TodoApp', () => {
@@ -11,51 +14,16 @@ describe('TodoApp', () => {
     expect(TodoApp).toExist();
   });
 
-  it('should add todo to state', () => {
-    const todoText = 'Test';
-    const todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
+  it('should render TodoList', () => {
+    const provider = TestUtils.renderIntoDocument(
+      <Provider store={configure()}>
+        <TodoApp/>
+      </Provider>
+    );
 
-    todoApp.setState({ todos: [] });
-    todoApp.handleAddTodo(todoText);
+    const todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
+    const todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
 
-    expect(todoApp.state.todos.length).toBe(1);
-    expect(todoApp.state.todos[0].text).toBe(todoText);
-    expect(todoApp.state.todos[0].createdAt).toBeA('number');
-  });
-
-  it('should toggle to completed', () => {
-    const todoData = {
-      id: 'abc',
-      text: 'Test',
-      completed: false,
-      createdAt: 0,
-      completedAt: undefined
-    };
-    const todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
-    todoApp.setState({ todos: [todoData]});
-    expect(todoApp.state.todos[0].completed).toBe(false);
-
-    todoApp.handleToggle('abc');
-
-    expect(todoApp.state.todos[0].completed).toBe(true);
-    expect(todoApp.state.todos[0].completedAt).toBeA('number');
-  });
-
-  it('should toggle from completed', () => {
-    const todoData = {
-      id: 'abc',
-      text: 'Test',
-      completed: true,
-      createdAt: 0,
-      completedAt: 1
-    };
-    const todoApp = TestUtils.renderIntoDocument(<TodoApp/>);
-    todoApp.setState({ todos: [todoData]});
-    expect(todoApp.state.todos[0].completed).toBe(true);
-
-    todoApp.handleToggle('abc');
-
-    expect(todoApp.state.todos[0].completed).toBe(false);
-    expect(todoApp.state.todos[0].completedAt).toNotExist();
+    expect(todoList.length).toEqual(1);
   });
 });
