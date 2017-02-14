@@ -8,7 +8,7 @@
     "devbuild": "webpack -w",
     "prodbuild": "NODE_ENV=production webpack",
     "test": "NODE_ENV=test karma start",
-    "postinstall": "yarn run prodbuild"
+    "postinstall": "npm rebuild node-sass && yarn run prodbuild"
   },
   "author": "Tom Burnett",
   "license": "ISC",
