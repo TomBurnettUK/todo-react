@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "debug": "webpack -w",
-    "build": "NODE_ENV=production webpack -p",
-    "test": "NODE_ENV=test karma start"
+    "devbuild": "webpack -w",
+    "prodbuild": "NODE_ENV=production webpack -p",
+    "test": "NODE_ENV=test karma start",
+    "postinstall": "yarn run prodbuild"
   },
   "author": "Tom Burnett",
   "license": "ISC",
