@@ -2,11 +2,11 @@ import firebase from 'firebase';
 
 try {
   const config = {
-    apiKey: "AIzaSyC4QlkCe94RQUc-ijJevfWY5rx9TDG_Q3o",
-    authDomain: "toms-todo-app.firebaseapp.com",
-    databaseURL: "https://toms-todo-app.firebaseio.com",
-    storageBucket: "toms-todo-app.appspot.com",
-    messagingSenderId: "409035447997"
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID
   };
 
   firebase.initializeApp(config);
