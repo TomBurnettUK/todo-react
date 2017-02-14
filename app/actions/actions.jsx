@@ -89,6 +89,13 @@ export default {
     };
   },
 
+  login(uid) {
+    return {
+      type: 'LOGIN',
+      uid
+    };
+  },
+
   startLogin() {
     return (dispatch, getState) => {
       return firebase.auth().signInWithPopup(githubProvider).then((result) => {
@@ -96,6 +103,12 @@ export default {
       }).catch((e) => {
         console.log(e);
       });
+    };
+  },
+
+  logout() {
+    return {
+      type: 'LOGOUT'
     };
   },
 

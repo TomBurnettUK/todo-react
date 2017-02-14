@@ -1,7 +1,7 @@
 import expect from 'expect';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import firebase, { firebaseRef } from 'app/firebase';
+import { firebaseRef } from 'app/firebase';
 
 import actions from 'actions';
 
@@ -83,6 +83,25 @@ describe('Actions', () => {
       updates: { completed: false }
     };
     const res = actions.updateTodo(action.id, action.updates);
+
+    expect(res).toEqual(action);
+  });
+
+  it('should generate login action', () => {
+    const action = {
+      type: 'LOGIN',
+      uid: 'abc'
+    };
+    const res = actions.login(action.uid);
+
+    expect(res).toEqual(action);
+  });
+
+  it('should generate logout action', () => {
+    const action = {
+      type: 'LOGOUT'
+    };
+    const res = actions.logout();
 
     expect(res).toEqual(action);
   });
