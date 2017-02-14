@@ -1,4 +1,4 @@
-import firebase, { firebaseRef } from 'app/firebase';
+import firebase, { firebaseRef, githubProvider } from 'app/firebase';
 import moment from 'moment';
 
 export default {
@@ -85,6 +85,24 @@ export default {
 
       return todoRef.update(updates).then(() => {
         dispatch(this.updateTodo(id, updates));
+      });
+    };
+  },
+
+  startLogin() {
+    return (dispatch, getState) => {
+      return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+        console.log('Auth success!', result);
+      }).catch((e) => {
+        console.log(e);
+      });
+    };
+  },
+
+  startLogout() {
+    return (dispatch, getState) => {
+      return firebase.auth().signOut().then(() => {
+        console.log('Logout success!');
       });
     };
   }
