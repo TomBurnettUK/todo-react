@@ -20,7 +20,7 @@ store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
 
-require('style!css!sass!./styles/app.scss');
+require('!style!css!sass!applicationStyles');
 
 ReactDOM.render(
   <Provider store={store}>
