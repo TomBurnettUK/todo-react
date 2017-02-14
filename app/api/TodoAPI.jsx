@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 export default {
   filterTodos(todos, showCompleted, searchText) {
     let filteredTodos = todos;

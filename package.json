@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "devbuild": "webpack -w",
-    "prodbuild": "NODE_ENV=production webpack -p",
+    "prodbuild": "NODE_ENV=production webpack",
     "test": "NODE_ENV=test karma start",
     "postinstall": "yarn run prodbuild"
   },
