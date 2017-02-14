@@ -42,6 +42,25 @@ export default {
     };
   },
 
+  startAddTodos() {
+    return (dispatch, getState) => {
+      const todosRef = firebaseRef.child('todos');
+
+      return todosRef.once('value').then((snapshot) => {
+        const todos = snapshot.val() || {};
+
+        const parsedTodos = Object.keys(todos).map((key) => {
+          return {
+            ...todos[key],
+            id: key
+          }
+        });
+
+        dispatch(this.addTodos(parsedTodos));
+      });
+    };
+  },
+
   toggleShowCompleted() {
     return {
       type: 'TOGGLE_SHOW_COMPLETED'
