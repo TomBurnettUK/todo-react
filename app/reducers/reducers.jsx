@@ -48,6 +48,9 @@ export default {
           }
         });
 
+      case 'LOGOUT':
+        return [];
+
       default:
         return state;
     }

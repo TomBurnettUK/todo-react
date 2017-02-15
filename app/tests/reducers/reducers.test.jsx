@@ -90,6 +90,24 @@ describe('Reducers', () => {
       expect(res[0].completedAt).toBe(updates.completedAt);
       expect(res[0].text).toEqual(todos[0].text);
     });
+
+    it('should remove todos from state on logout', () => {
+      const todos = [{
+        id: 'abc',
+        text: 'Test text',
+        completed: true,
+        createdAt: 100,
+        completedAt: 200
+      }];
+
+      const action = {
+        type: 'LOGOUT'
+      };
+
+      const res = reducers.todosReducer(df(todos), df(action));
+
+      expect(res).toEqual([]);
+    });
   });
 
   describe('authReducer', () => {
